@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Church Map</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script>
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 39.1857, lng: -78.1633 },
+        zoom: 12
+      });
+
+      addMarker({
+        coords: { lat: 39.174889, lng: -78.186574 },
+        icon: 'https://png.icons8.com/metro/1600/home.png',
+        content: "<div><img src='http://detroit.hmcc.net/resources/annarbor/events/lifegroup-ad_sept2016.jpg' width='300'></div>" +
+                 "<div style='float:down; max-width:300px'><p>LIFE group is held at the home of Michael and Laura Ebhardt</p>"+
+                 "<p>Phone: 703-408-4936</p>" + 
+                 "<p>Email: michael.ebhardt@gmail.com</p></div>"
+      })
+
+      addMarker({
+        coords: { lat: 39.092306, lng: -78.206045 },
+        icon: 'https://png.icons8.com/metro/1600/church.png',
+        content: "<img src='http://static1.squarespace.com/static/533ca059e4b0e0ebd51fc4ea/t/5a9702128165f57d59c3ced0/1519845909744/alc+-+logo+-+full+color.jpg?format=1000w' width='300'>" +
+                 "<div style='float:down; max-width:300px'><p>Phone: 540-869-7442</p>"+
+                 "<p>Address: 700 Aylor Road, Stephens City, VA, 22655</p>"+
+                 "<a href='http://www.myabundantlife.com/'>http://www.myabundantlife.com/</a></div>"
+      })
+
+      addMarker({
+        coords: {lat: 39.189101, lng:-78.162634},
+        icon: 'https://d30y9cdsu7xlg0.cloudfront.net/png/4060-200.png',
+        content: "<div><img src='http://www.winrescue.org/uploads/1/0/8/8/108840061/winchester-rescue-mission-logo_1.png' width='300'></div>" +
+                 "<div style='float:down; max-width:300px'><p>The purpose of Winchester Rescue Mission is to maintain a non-sectarian organization " +
+                 "for the advancement of the Kingdom of God through the Gospel of Jesus Christ and to do missionary, relief and rescue work "+
+                 "of all kinds in Winchester and the surrounding area, and such other places that the Board of Directors deem advisable.</p>"+
+                 "<p>Phone: 540-667-5379</p>" + 
+                 "<p>Address: 435 Cameron Street, Winchester, VA 22601</p>"+
+                 "<a href='http://www.winrescue.org/'>http://www.winrescue.org/</a></div>"
+      })
+
+      addMarker({
+        coords: {lat: 39.216668, lng:-78.193446},
+        icon: 'https://d30y9cdsu7xlg0.cloudfront.net/png/4060-200.png',
+        content: "<div><img src='https://sites.google.com/a/fcpsk12.net/brightfuturesfrederickcounty/_/rsrc/1490097958255/config/customLogo.gif?revision=4' width='300'></div>" +
+                 "<div style='float:down; max-width:300px'><p>Bright Futures—Frederick/Winchester is a non-profit organization that helps schools connect student needs " +
+                 "with resources that already exist in the community. The Bright Futures framework brings together businesses, human service agencies, faith-based organizations, " +
+                 "and parent groups and partners them with schools in a way that helps them quickly and efficiently meet the needs of students and schools.</p>"+
+                 "<p>Phone: 540-667-2490</p>" + 
+                 "<p>Address: 178 Indian Hollow Road, Winchester, VA 22603</p>"+
+                 "<a href='https://sites.google.com/a/fcpsk12.net/brightfuturesfrederickcounty/'>Website</a></div>"
+      })
+
+      function addMarker(info) {
+        var icon = {
+          url: info.icon, // url
+          scaledSize: new google.maps.Size(50, 50), // scaled size
+          origin: new google.maps.Point(0, 0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
+        };
+
+        var marker = new google.maps.Marker({ position: info.coords, map: map, icon: icon });
+        var infoWindow = new google.maps.InfoWindow({
+          content: info.content,
+          maxWidth: 600
+        });
+        marker.addListener('click', function () {
+          infoWindow.open(map, marker);
+        });
+
+      }
+
+
+    }
+
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsCusYj5z7f2Y_l3x3TjB07Joy2fQNAtA&callback=initMap" async
+    defer></script>
+</body>
+
+</html>
