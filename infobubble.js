@@ -210,8 +210,8 @@ InfoBubble.prototype.buildDom_ = function() {
   // Close button
   var close = this.close_ = document.createElement('IMG');
   close.style['position'] = 'absolute';
-  close.style['width'] = this.px(25);
-  close.style['height'] = this.px(25);
+  close.style['width'] = this.px(30);
+  close.style['height'] = this.px(30);
   close.style['border'] = 0;
   close.style['zIndex'] = this.baseZIndex_ + 1;
   close.style['cursor'] = 'pointer';
