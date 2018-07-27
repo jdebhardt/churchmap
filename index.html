@@ -6,6 +6,7 @@
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='bubble.css' rel='stylesheet' type='text/css'>
   <style>
     /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -29,18 +30,6 @@
   }
   </style>
 
-<style type="text/css">
-    .wincontent {
-      line-height: 1.35;
-      overflow:auto;
-      max-width: 250px;
-      max-height: 150px;
-      padding: 5px;
-      font-family: 'Roboto', sans-serif;
-      font-size:13px;
-    }
-</style>
-
 </head>
 
 <body>
@@ -48,6 +37,7 @@
   <script type="text/javascript" src="infobubble.js"></script>
   <script>
     var map;
+    var bubbles = [];
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 39.1857, lng: -78.1633 },
@@ -57,43 +47,43 @@
       addMarker({
         coords: { lat: 39.174889, lng: -78.186574 },
         icon: 'https://png.icons8.com/metro/1600/home.png',
-        content: "<img src='http://detroit.hmcc.net/resources/annarbor/events/lifegroup-ad_sept2016.jpg' width='250'>" +
-                 "<div class='wincontent'><p>LIFE group is held at the home of Michael and Laura Ebhardt</p>"+
-                 "<p><b>Phone:</b> 703-408-4936</p>" + 
-                 "<p><b>Email:</b> michael.ebhardt@gmail.com</p></div>"
+        image: 'http://detroit.hmcc.net/resources/annarbor/events/lifegroup-ad_sept2016.jpg',
+        textLines: ["LIFE group is held at the home of Michael and Laura Ebhardt.",
+                    "<b>Phone:</b> 703-408-4936",
+                    "<b>Email:</b> michael.ebhardt@gmail.com"]
       })
 
       addMarker({
         coords: { lat: 39.092306, lng: -78.206045 },
         icon: 'https://png.icons8.com/metro/1600/church.png',
-        content: "<img src='http://static1.squarespace.com/static/533ca059e4b0e0ebd51fc4ea/t/5a9702128165f57d59c3ced0/1519845909744/alc+-+logo+-+full+color.jpg?format=1000w' width='250'>" +
-                 "<div class='wincontent'><p><b>Phone:</b> 540-869-7442</p>"+
-                 "<p><b>Address:</b> 700 Aylor Road, Stephens City, VA, 22655</p>"+
-                 "<a href='http://www.myabundantlife.com/'>http://www.myabundantlife.com/</a></div>"
+        image: 'http://static1.squarespace.com/static/533ca059e4b0e0ebd51fc4ea/t/5a9702128165f57d59c3ced0/1519845909744/alc+-+logo+-+full+color.jpg?format=1000w',
+        textLines: ['<b>Phone:</b> 540-869-7442',
+                    '<b>Address:</b> 700 Aylor Road, Stephens City, VA, 22655'],
+        wesbite: 'http://www.myabundantlife.com/'
       })
 
       addMarker({
         coords: {lat: 39.189101, lng:-78.162634},
         icon: 'https://d30y9cdsu7xlg0.cloudfront.net/png/4060-200.png',
-        content: "<img src='http://www.winrescue.org/uploads/1/0/8/8/108840061/winchester-rescue-mission-logo_1.png' width='250'>" +
-                 "<div class='wincontent'><p>The purpose of <b>Winchester Rescue Mission</b> is to maintain a non-sectarian organization " +
-                 "for the advancement of the Kingdom of God through the Gospel of Jesus Christ and to do missionary, relief and rescue work "+
-                 "of all kinds in Winchester and the surrounding area, and such other places that the Board of Directors deem advisable.</p>"+
-                 "<p><b>Phone:</b> 540-667-5379</p>" + 
-                 "<p><b>Address:</b> 435 Cameron Street, Winchester, VA 22601</p>"+
-                 "<a href='http://www.winrescue.org/'>http://www.winrescue.org/</a></div>"
+        image: 'http://www.winrescue.org/uploads/1/0/8/8/108840061/winchester-rescue-mission-logo_1.png',
+        textLines: ['The purpose of <b>Winchester Rescue Mission</b> is to maintain a non-sectarian organization ' +
+                        'for the advancement of the Kingdom of God through the Gospel of Jesus Christ and to do missionary, relief and rescue work ' +
+                        'of all kinds in Winchester and the surrounding area, and such other places that the Board of Directors deem advisable.',
+                    '<b>Phone:</b> 540-667-5379',
+                    '<b>Address:</b> 435 Cameron Street, Winchester, VA 22601'],
+        website: 'http://www.winrescue.org/'
       })
 
       addMarker({
         coords: {lat: 39.216668, lng:-78.193446},
         icon: 'https://d30y9cdsu7xlg0.cloudfront.net/png/4060-200.png',
-        content: "<img src='https://sites.google.com/a/fcpsk12.net/brightfuturesfrederickcounty/_/rsrc/1490097958255/config/customLogo.gif?revision=4' width='250'>" +
-                 "<div class='wincontent'><p><b>Bright Futures—Frederick/Winchester</b> is a non-profit organization that helps schools connect student needs " +
-                 "with resources that already exist in the community. The Bright Futures framework brings together businesses, human service agencies, faith-based organizations, " +
-                 "and parent groups and partners them with schools in a way that helps them quickly and efficiently meet the needs of students and schools.</p>"+
-                 "<p><b>Phone:</b> 540-667-2490</p>" + 
-                 "<p><b>Address:</b> 178 Indian Hollow Road, Winchester, VA 22603</p>"+
-                 "<a href='https://sites.google.com/a/fcpsk12.net/brightfuturesfrederickcounty/'>Website</a></div>"
+        image: 'https://sites.google.com/a/fcpsk12.net/brightfuturesfrederickcounty/_/rsrc/1490097958255/config/customLogo.gif?revision=4',
+        textLines: ['<b>Bright Futures—Frederick/Winchester</b> is a non-profit organization that helps schools connect student needs ' +
+                        'with resources that already exist in the community. The Bright Futures framework brings together businesses, human service agencies, faith-based organizations, ' +
+                        'and parent groups and partners them with schools in a way that helps them quickly and efficiently meet the needs of students and schools.',
+                    '<b>Phone:</b> 540-667-2490', 
+                    '<b>Address:</b> 178 Indian Hollow Road, Winchester, VA 22603'],
+        website: 'https://sites.google.com/a/fcpsk12.net/brightfuturesfrederickcounty/'
       })
 
       function addMarker(info) {
@@ -106,19 +96,40 @@
 
         var marker = new google.maps.Marker({ position: info.coords, map: map, icon: icon });
         
+        content = "<img src='" + info.image + "' width='100%'>"
+        content += "<div class='bubcontent'>";
+        
+        for(var i = 0; i < info.textLines.length; i++){
+            content += "<p>" + info.textLines[i] + "</p>";
+        }
+        
+        if (info.website != null){
+            content += "<a href='" + content.website + "'>";
+            if (info.website.length >= 50)
+                content += "Website";
+            else
+                content += info.website;
+            content += "</a>"
+        }
+        content += "</div>"
         
         var infoBubble = new InfoBubble({
-            content: info.content,
+            content: content,
             maxWidth: 250,
             padding: 0
         });
-     
+
+        bubbles.push(infoBubble)
 
         marker.addListener('click', function () {
-          infoBubble.open(map, marker);
+            for (var i = 0; i < bubbles.length; i++){
+                if (bubbles[i].isOpen())
+                    bubbles[i].close();
+            }
+            infoBubble.open(map, marker);
         });
 
-     
+        
 
       }
 
